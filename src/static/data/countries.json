@@ -1,0 +1,8 @@
+{
+    "Israel":{"code":"il","capital":"Jerusalem"},
+    "The United States":{"code":"us", "capital":"Washington DC"},
+    "Australia":{"code":"au", "capital":"Canberra"},
+    "Brazil":{"code":"br", "capital":"Brasilia"},
+    "Canada":{"code":"ca","capital":"Ottawa"},
+    "Jamaica":{"code":"jm","capital":"Kingston"}
+}

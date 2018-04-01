@@ -1,0 +1,36 @@
+
+html,body{
+    height: 100%;
+}
+html{
+    font-size: 1rem;
+}
+body{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background: mintcream;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border:aqua dashed 3px; */
+    /*color:papayawhip*/
+}
+/*--------------------*/
+
+.answers{
+    color: blue;
+}
+.wrong{
+    color:red;
+}
+.right{
+    color:green;
+}
+.flag{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+}
