@@ -171,7 +171,6 @@ export default class App extends Component {
                 {
                     this.state.timed &&
                     <div>
-                        <progress value={10 - this.state.sec} max="10"></progress>
                         <br />
                         round: {this.state.round}
                         <br />
@@ -180,6 +179,7 @@ export default class App extends Component {
                     </div>
                 }
                 <button onClick={this.newGame}>New Game</button>
+                {this.state.timed && !this.state.gameOver && <Timer sec={this.state.sec}/>}
             </div>
         )
     }

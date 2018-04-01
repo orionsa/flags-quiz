@@ -23,14 +23,80 @@ body{
 .answers{
     color: blue;
 }
-.wrong{
-    color:red;
-}
-.right{
-    color:green;
-}
+
 .flag{
     width: 20rem;
     height: 20rem;
     border-radius: 50%;
+}
+
+.pie{
+    width: 5em;
+    height: 5em;
+    display: block;
+    border-radius: 50%;
+    background-color: green;
+    border: 2px solid green;
+    float: left;
+    margin: 1em;
+}
+.zero{
+    background-color: white;
+    border: 2px solid red;
+}
+.ten{
+    background-image:
+        linear-gradient(126deg, transparent 50%, white 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+.nine{
+    background-image:
+        linear-gradient(162deg, transparent 50%, white 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+.eight{
+    background-image:
+    linear-gradient(198deg, transparent 50%, white 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
+}
+.seven{
+    background-image:
+    linear-gradient(234deg, transparent 50%, white 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
+}
+.six{
+    background-image:
+    linear-gradient(270deg, transparent 50%, white 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
+}
+.five{
+    background-image:
+        linear-gradient(126deg, transparent 50%, green 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+.four{
+    background-image:
+        linear-gradient(162deg, transparent 50%, green 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+.three{
+    border: 2px solid red;
+    background-color: red;
+    background-image:
+        linear-gradient(198deg, transparent 50%, red 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+.two{
+    border: 2px solid red;
+    background-color: red;
+    background-image:
+    linear-gradient(234deg, transparent 50%, red 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
+}
+.one{
+    border: 2px solid red;
+    background-color: red;
+    background-image:
+    linear-gradient(270deg, transparent 50%, red 50%),
+    linear-gradient(90deg, white 50%, transparent 50%);
 }

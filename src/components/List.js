@@ -87,7 +87,6 @@ export default class List extends Component {
                 <ul>
                     {this.state.answers.map(item => {
                         return <li className="answers" key={item} onClick={(event) => {
-                            if(!this.state.clicked)
                             this.checkAnswer(event)
                         }}>{item}</li>
                     })}
