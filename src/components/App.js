@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import countries from '../static/data/countries.json'
-import List from './List'
-import Timer from './Timer'
+import countries from '../static/data/countries.json';
+import List from './List';
+import Timer from './Timer';
+import TopBar from './TopBar';
+import Instructions from './Instructions';
 
 let countDown
 let sec
@@ -11,6 +13,7 @@ export default class App extends Component {
         this.state = {
             countries: [],
             capitals: [],
+            urls: [],
             currentCountry: {},
             countryOrCapital: '',
             sec: 10,
@@ -18,7 +21,8 @@ export default class App extends Component {
             round: 0,
             score: 0,
             gameOver: false,
-            timed: true
+            timed: true,
+            instructionSwitch: false
         }
         this.CountryCapitalSwitch = this.CountryCapitalSwitch.bind(this);
         this.nextQuestion = this.nextQuestion.bind(this);
@@ -26,17 +30,20 @@ export default class App extends Component {
         this.timer = this.timer.bind(this);
         this.newGame = this.newGame.bind(this);
         this.timeSwitch = this.timeSwitch.bind(this);
+        this.instructionSwitch = this.instructionSwitch.bind(this);
     }
     componentWillMount() {
         let allCountries = [];
         let allCapitals = [];
+        let allUrls=[]
         for (let i = 0; i < Object.keys(countries).length; i++) {//Fetch data from json file 
             //console.log('Object.keys(countries)[i] ', Object.keys(countries)[i])
             allCountries.push(Object.keys(countries)[i]);
             //console.log('Object.values(countries)[i].capital ', Object.values(countries)[i].capital)
             allCapitals.push(Object.values(countries)[i].capital);
+            allUrls.push(`http://flags.fmcdn.net/data/flags/w580/${Object.values(countries)[i].code}.png`)
         }
-        this.setState({ countries: allCountries, capitals: allCapitals })
+        this.setState({ countries: allCountries, capitals: allCapitals, urls: allUrls })
         this.timer()
     }
     getRandomCountry() {//Sets random country according to game mode
@@ -150,36 +157,54 @@ export default class App extends Component {
         }
         else this.setState({ timed: true }, () => this.newGame())
     }
+    buttonText(){
+        if (this.state.timed) return 'Untimed'
+        else return 'Timed'
+    }
+    instructionSwitch(){
+        if (this.state.timed){
+            if (this.state.instructionSwitch) 
+                this.setState({instructionSwitch: !this.state.instructionSwitch},()=>this.newGame());
+            else{
+                clearInterval(countDown);
+                this.setState({instructionSwitch: !this.state.instructionSwitch})
+            }
+        }
+        else
+            this.setState({instructionSwitch: !this.state.instructionSwitch})
+    }
     render() {
         //console.log('countries:', countries, Object.values(countries))
         return (
             <div className="app">
-                <button onClick={this.timeSwitch}>Timed</button>
-                <br />
-                <img className='flag' src={this.state.currentCountry.flag} />
-                <br />
-                {!this.state.gameOver && this.state.countryOrCapital == 'country' && <List correct={this.state.currentCountry.country}
-                    answers={this.state.countries}
-                    CountryCapitalSwitch={this.CountryCapitalSwitch}
-                    newQuestion={this.nextQuestion} />}
-                <br />
-                {!this.state.gameOver && this.state.countryOrCapital == 'capital' && <List correct={this.state.currentCountry.capital}
-                    answers={this.state.capitals}
-                    newQuestion={this.nextQuestion}
-                    CountryCapitalSwitch={this.CountryCapitalSwitch} />}
-                <br />
-                {
-                    this.state.timed &&
-                    <div>
-                        <br />
-                        round: {this.state.round}
-                        <br />
-                        score: {this.state.score}
-                        <br />
+                <TopBar flags={this.state.urls} toggle={this.instructionSwitch}/>
+                {this.state.instructionSwitch && <Instructions toggle={this.instructionSwitch}/>}
+                <div className='main-container'>
+                    <div className='flag-button-container'>
+                        <button className='button' onClick={this.timeSwitch}>{this.buttonText()}</button>
+                        <div className='flag' style={{ backgroundImage: `url(${this.state.currentCountry.flag})` }}></div>
+                        {this.state.timed && !this.state.gameOver && <Timer sec={this.state.sec}/>}
+                        <button className='button' onClick={this.newGame}>New Game</button>
                     </div>
-                }
-                <button onClick={this.newGame}>New Game</button>
-                {this.state.timed && !this.state.gameOver && <Timer sec={this.state.sec}/>}
+                    {!this.state.gameOver && this.state.countryOrCapital == 'country' && <List correct={this.state.currentCountry.country}
+                        answers={this.state.countries}
+                        CountryCapitalSwitch={this.CountryCapitalSwitch}
+                        newQuestion={this.nextQuestion} />}
+                    {!this.state.gameOver && this.state.countryOrCapital == 'capital' && <List correct={this.state.currentCountry.capital}
+                        answers={this.state.capitals}
+                        newQuestion={this.nextQuestion}
+                        CountryCapitalSwitch={this.CountryCapitalSwitch} />}
+                    {
+                        this.state.timed &&
+                        <div>
+                            <br />
+                            round: {this.state.round}
+                            <br />
+                            score: {this.state.score}
+                            <br />
+                        </div>
+                    }
+                </div>
             </div>
         )
     }

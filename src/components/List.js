@@ -83,15 +83,14 @@ export default class List extends Component {
     }
     render() {
         return (
-            <div>
-                <ul>
+                <ul className='answers-container'>
                     {this.state.answers.map(item => {
-                        return <li className="answers" key={item} onClick={(event) => {
+                        return <li className="answer" key={item} onClick={(event) => {
                             this.checkAnswer(event)
                         }}>{item}</li>
                     })}
                 </ul>
-            </div>
+
         )
     }
 }
