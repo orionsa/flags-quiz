@@ -47,16 +47,12 @@ button:focus {outline:0;}
     width: 100vw;
     height: 100vh;
 }
-/* .answer{
-    color: blue;
-    width:100vw;
-} */
 
 .flag{
     width: 26rem;
     height: 16rem;
     border-radius: 50%;
-    box-shadow: 0 0 50px 10px #878787;
+    box-shadow: 0 0 50px 5px #878787;
     margin: 0 7rem 0 7rem;
     z-index: 1;
     background-size: cover;
@@ -184,7 +180,10 @@ button:focus {outline:0;}
     flex-basis: 35%;
     border: 1px solid black;
     height: 70px;
-    /* background: tomato; */
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(135deg, #066dab 0%,#8abbd7 66%,#8abbd7 66%,#c5deea 100%);
     border-radius: 5px;
     margin: 1rem 1rem 0 1rem;
@@ -203,15 +202,47 @@ button:focus {outline:0;}
     cursor: pointer;
     animation: buttonHover ease-in-out .05s forwards; 
 }
+.right{
+    color: blue;
+    flex-basis: 35%;
+    border: 1px solid black;
+    height: 70px;
+    background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 63%,#9ecb2d 100%);
+    border-radius: 5px;
+    margin: 1rem 1rem 0 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right:hover{
+    background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 63%,#9ecb2d 100%);
+}
+.wrong{
+    color: blue;
+    flex-basis: 35%;
+    border: 1px solid black;
+    height: 70px;
+    background: linear-gradient(to bottom, #f85032 0%,#f16f5c 54%,#f6290c 73%,#f6290c 73%,#f6290c 75%,#f02f17 87%,#e73827 100%);
+    border-radius: 5px;
+    margin: 1rem 1rem 0 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrong:hover{
+    background: linear-gradient(to bottom, #f85032 0%,#f16f5c 54%,#f6290c 73%,#f6290c 73%,#f6290c 75%,#f02f17 87%,#e73827 100%);
+}
 /*----- Timer Component -----*/
 .pie{
     width: 28rem;
     height: 18rem;
     display: block; 
     border-radius: 50%;
-    background-color: green;
+    background-color: #22ff22;
     /* border: 2px solid green; */
-    box-shadow: inset 0px 0px 53px 4px rgba(117,117,117,1);
+    box-shadow: inset 0px 0px 27px 2px rgba(117,117,117,1);
     float: left;
     position: absolute;
 }
@@ -246,31 +277,31 @@ button:focus {outline:0;}
 }
 .five{
     background-image:
-        linear-gradient(126deg, transparent 50%, green 50%),
+        linear-gradient(126deg, transparent 50%, #22ff22 50%),
         linear-gradient(90deg, white 50%, transparent 50%);
 }
 .four{
     background-image:
-        linear-gradient(162deg, transparent 50%, green 50%),
+        linear-gradient(162deg, transparent 50%, #22ff22 50%),
         linear-gradient(90deg, white 50%, transparent 50%);
 }
 .three{
     /* border: 2px solid red; */
-    background-color: red;
+    background-color: #ff0000;
     background-image:
         linear-gradient(198deg, transparent 50%, red 50%),
         linear-gradient(90deg, white 50%, transparent 50%);
 }
 .two{
     /* border: 2px solid red; */
-    background-color: red;
+    background-color:#ff0000;
     background-image:
     linear-gradient(234deg, transparent 50%, red 50%),
     linear-gradient(90deg, white 50%, transparent 50%);
 }
 .one{
     /* border: 2px solid red; */
-    background-color: red;
+    background-color: #ff0000;
     background-image:
     linear-gradient(270deg, transparent 50%, red 50%),
     linear-gradient(90deg, white 50%, transparent 50%);

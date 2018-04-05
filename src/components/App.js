@@ -71,7 +71,7 @@ export default class App extends Component {
         else { //Execute only on untimed game mode
             let ran = Math.floor(Math.random() * (Object.keys(countries).length )) ;
             console.log('ran is: ', Object.keys(countries)[ran]);
-            console.log('this.state.askedCountries.length <= this.state.countries.length', this.state.askedCountries.length , this.state.countries.length)
+            //console.log('this.state.askedCountries.length <= this.state.countries.length', this.state.askedCountries.length , this.state.countries.length)
             //while (this.state.askedCountries.length <= this.state.countries.length){
             if (this.state.askedCountries.length < this.state.countries.length){// Prevent infinite loop after all the flags were asked
                 if (this.state.askedCountries.includes(ran)) this.getRandomCountry() //Make sure each country is picked only once in one game
@@ -109,19 +109,25 @@ export default class App extends Component {
     }
     CountryCapitalSwitch() {//switch between country and capital questions
         console.log('from country to capital check')
-        console.log('this.state.sec', this.state.sec)
+        console.log('this.state.sec', this.state.countryOrCapital)
         //this.setState({countryOrCapital: 'capital'})
         if (this.state.timed) {//Execute only on timed game mode, update the current second to the score count and reset the timer
             if (this.state.countryOrCapital == 'country')
                 this.setState({ countryOrCapital: 'capital', score: this.state.score + this.state.sec })
-            if (this.state.countryOrCapital == 'capital')
+            //if (this.state.countryOrCapital == 'capital')
+            else
                 this.setState({ score: this.state.score + this.state.sec, sec: 10 }, () => this.timer())
         }
         else {//Execute only on untimed game mode
+            console.log('CHECK CHECK', this.state.countryOrCapital)
             if (this.state.countryOrCapital == 'country')
-                this.setState({ countryOrCapital: 'capital' })
-            if (this.state.countryOrCapital == 'capital')
-                this.getRandomCountry()
+                {console.log('check1')
+                this.setState({ countryOrCapital: 'capital' })}
+            //if (this.state.countryOrCapital == 'capital') 
+            else
+                {
+                    console.log('check2')
+                    this.getRandomCountry()}
         }
     }
     nextQuestion() {
@@ -131,7 +137,9 @@ export default class App extends Component {
                 this.timer()
             })
         }
-        else this.getRandomCountry()
+        else {
+            console.log('next question check')
+            this.getRandomCountry()}
     }
     newGame() {
         console.log('new game');

@@ -23,7 +23,6 @@ export default class Timer extends Component {
     render() {
         return (
             <div className={this.clock()}>
-                {this.props.sec}
             </div>
         )
     }
