@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import countries from '../static/data/countries.json';
+import countries from '../static/data/allCountries.json';
 import List from './List';
 import Timer from './Timer';
 import TopBar from './TopBar';
 import Instructions from './Instructions';
+import Score from './Score';
+import gameOver from './GameOver';
 
 let countDown
 let sec
@@ -166,8 +168,7 @@ export default class App extends Component {
         else this.setState({ timed: true }, () => this.newGame())
     }
     buttonText(){
-        if (this.state.timed) return 'Untimed'
-        else return 'Timed'
+        if (!this.state.timed) return <div className='untimed'></div>
     }
     instructionSwitch(){
         if (this.state.timed){
@@ -189,8 +190,13 @@ export default class App extends Component {
                 {this.state.instructionSwitch && <Instructions toggle={this.instructionSwitch}/>}
                 <div className='main-container'>
                     <div className='flag-button-container'>
-                        <button className='button' onClick={this.timeSwitch}>{this.buttonText()}</button>
-                        <div className='flag' style={{ backgroundImage: `url(${this.state.currentCountry.flag})` }}></div>
+                        <button className='button timer-btn' onClick={this.timeSwitch}>{this.buttonText()}</button>
+                        {/* <div className='flag' style={{ backgroundImage: `url(${this.state.currentCountry.flag})` }}></div> */}
+                        {
+                            !this.state.gameOver 
+                            ?<div className='flag' style={{ backgroundImage: `url(${this.state.currentCountry.flag})` }}></div> //displyed when game over state is false
+                            :<div className='flag none' style={{ backgroundImage: `url(${this.state.currentCountry.flag})` }}></div>// adds css visability hidden to the flag
+                        }
                         {this.state.timed && !this.state.gameOver && <Timer sec={this.state.sec}/>}
                         <button className='button' onClick={this.newGame}>New Game</button>
                     </div>
@@ -202,16 +208,8 @@ export default class App extends Component {
                         answers={this.state.capitals}
                         newQuestion={this.nextQuestion}
                         CountryCapitalSwitch={this.CountryCapitalSwitch} />}
-                    {
-                        this.state.timed &&
-                        <div>
-                            <br />
-                            round: {this.state.round}
-                            <br />
-                            score: {this.state.score}
-                            <br />
-                        </div>
-                    }
+                    {!this.state.gameOver && this.state.timed && <Score firstParam={this.state.round} secondParam={this.state.score}/>}
+        {/*this.state.gameOver && <GameOver />*/}
                 </div>
             </div>
         )
